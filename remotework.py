@@ -1,24 +1,29 @@
 import requests
 from bs4 import BeautifulSoup
 
-# skills
-keywords = [
-    "flutter",
-    "python",
-    "golang"
-]
-# list which stores all jobs info
-all_jobs = []
 
-
-class Job_Scrapping:
+class Remotework_JobScraper:
+    
     def __init__(self, title="", company="", location="", URL=""):
-        self.title = title,
-        self.company = company,
-        self.location = location,
+        self.title = title
+        self.company = company
+        self.location = location
         self.URL = URL
+        self.all_jobs = [] # list which stores all jobs info
+    
+    
+    def rw_scrape_jobs(self, keywords):
+        for keyword in keywords:
+            url = f"https://remoteok.com/remote-{keyword}-jobs"
+            self.rw_scrape_page(url)
+            print(f"Jobs for {keyword}:")
+            for job in self.all_jobs:
+                print(job)
+            print()
 
-    def scrape_page(self, url):
+
+
+    def rw_scrape_page(self, url):
         print(f"Scrapping {url}")
         response = requests.get(
             url,
@@ -31,28 +36,31 @@ class Job_Scrapping:
         jobs = soup.find("table", id="jobsboard").find_all("tr", class_="job")
 
         for job in jobs:
-            self.title = job.find("h2", itemprop="title").text.replace("\n", "")
-            self.company = job.find("h3", itemprop="name").text.replace("\n", "")
-            self.location = job.find("div", class_="location").text.replace("\n", "")
-            self.URL = job.find("a", class_="preventLink")["href"]
+            title = job.find("h2", itemprop="title").text.replace("\n", "")
+            company = job.find("h3", itemprop="name").text.replace("\n", "")
+            location = job.find("div", class_="location").text.replace("\n", "")
+            URL = job.find("a", class_="preventLink")["href"]
 
             job_data = {
-                "title": self.title,
-                "company": self.company,
-                "location": self.location,
-                "URL": f"https://remoteok.com{self.URL}"
+                "title": title,
+                "company": company,
+                "location": location,
+                "URL": f"https://remoteok.com{URL}"
             }
-            all_jobs.append(job_data)
+            self.all_jobs.append(job_data)
 
 
-scraper = Job_Scrapping()
-for keyword in keywords:
-    url = f"https://remoteok.com/remote-{keyword}-jobs"
-    scraper.scrape_page(url)
-    print(all_jobs)
+# skills
+keywords = [
+    "flutter",
+    "python",
+    "golang"
+]
 
 
-
+# execute scrape_jobs
+Remotework = Remotework_JobScraper()
+Remotework.rw_scrape_jobs(keywords)
 
 
 
