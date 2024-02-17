@@ -55,10 +55,3 @@ class Weworkremotely_JobScraper:
         soup = BeautifulSoup(response.content, "html.parser")
         pages = len(soup.find("div", class_="pagination").find_all("span", class_="page"))
         return pages
-
-
-
-# execute codes
-Weworkremotely = Weworkremotely_JobScraper()
-Weworkremotely.wwr_scrape_jobs()
-    
