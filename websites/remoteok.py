@@ -3,22 +3,14 @@ from bs4 import BeautifulSoup
 
 
 class Remoteok_JobScraper:
-    
-    def __init__(self, keyword, title="", company="", location="", URL=""):
-        self.keyword = keyword
-        self.title = title
-        self.company = company
-        self.location = location
-        self.URL = URL
+
+    def __init__(self):
         self.all_jobs = [] 
     
     
     def rw_scrape_jobs(self, keyword):
         url = f"https://remoteok.com/remote-{keyword}-jobs"
         self.rw_scrape_page(url)
-        # for job in self.all_jobs:
-        #     print(job)
-        # print()
 
 
     def rw_scrape_page(self, url):
@@ -49,6 +41,6 @@ class Remoteok_JobScraper:
         return self.all_jobs
 
 
-
-
-
+# remoteok = Remoteok_JobScraper()
+# remoteok.rw_scrape_jobs("python")
+# print(remoteok.all_jobs)

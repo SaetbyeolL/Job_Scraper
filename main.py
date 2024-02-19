@@ -1,17 +1,42 @@
+from flask import Flask, render_template, request
 from websites.remoteok import Remoteok_JobScraper
 from websites.wanted import Wanted_JobScraper
-from file import save_to_file
 
 
-keyword = input("What do you want to search for?")
+app = Flask("JobScraper")
 
-remoteok = Remoteok_JobScraper(keyword)
-remoteok.rw_scrape_jobs(keyword) 
-wanted = Wanted_JobScraper(keyword)
-wanted.Wanted_scrape_jobs(keyword)
-jobs = remoteok.all_jobs + wanted.all_jobs
+@app.route("/") # decorator: when user visit this page, flask will call function which is located right below 
+def home():
+    return render_template("home.html", name="nico")
+# render_template: flask look inside 'templates'folder and get 'home.html'
 
-save_to_file(keyword, jobs)
+@app.route("/search")
+def hello():
+    keyword = request.args.get("keyword") # request argument(ex.keyword)
+    remoteok = Remoteok_JobScraper()
+    remoteok.rw_scrape_jobs(keyword)
+    wanted = Wanted_JobScraper()
+    wanted.Wanted_scrape_jobs(keyword)
+    jobs =  remoteok.all_jobs + wanted.all_jobs
+    return render_template("search.html", keyword=keyword, jobs=jobs)
+
+
+app.run()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

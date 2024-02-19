@@ -5,8 +5,7 @@ import time
 
 class Wanted_JobScraper:
     
-    def __init__(self, keyword):
-        self.keyword = keyword
+    def __init__(self):
         self.playwright = sync_playwright().start()                 
         self.browser = self.playwright.chromium.launch(headless=False)  
         self.page = self.browser.new_page()                             
@@ -14,11 +13,11 @@ class Wanted_JobScraper:
 
     
     def Wanted_scrape_jobs(self, keyword):
-        self.page.goto(f"https://www.wanted.co.kr/search?query={self.keyword}&tab=position")
+        self.page.goto(f"https://www.wanted.co.kr/search?query={keyword}&tab=position")
      
         for _ in range(5):                                  
             self.page.keyboard.down("End")
-            time.sleep(1)
+            time.sleep(0.1)
             
         self.content = self.page.content()
         self.Wanted_scrape_page()        
@@ -45,4 +44,3 @@ class Wanted_JobScraper:
             self.all_jobs.append(job_data)
         
         return self.all_jobs
-

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css" />
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 100px;
+        }
+        form {
+            width: 50%;
+            margin-top: 20px;
+        }
+        button {
+            width: 100%;
+        }
+    </style>
+
+
+    <title>Job Scraper</title>
+</head>
+<body>
+    <main class="container">
+        <h1>Job Scraper</h1>
+        <h4>What type of skill or job are you searching for?</h4>
+        <form action="/search"> 
+            <input type="type" name="keyword" placeholder="Write keyword please" />
+            <button>Search</button>
+        </form>
+    </main>
+</body>
+</html>
