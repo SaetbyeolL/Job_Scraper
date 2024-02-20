@@ -22,7 +22,7 @@ class Wanted_JobScraper:
         self.content = self.page.content()
         self.Wanted_scrape_page()        
 
-    
+        
     def Wanted_scrape_page(self):
         soup = BeautifulSoup(self.content, "html.parser")
         jobs = soup.find_all("div", class_="JobCard_container__FqChn")  
@@ -31,14 +31,12 @@ class Wanted_JobScraper:
             title = job.find("strong", "JobCard_title__ddkwM").text
             company = job.find("span", class_="JobCard_companyName__vZMqJ").text
             location = job.find("span", class_="JobCard_location__2EOr5").text
-            # reward = job.find("span", class_="JobCard_reward__sdyHn").text
             URL = f"https://www.wanted.co.kr{job.find('a')['href']}"
             
             job_data = {
                 "title": title,
                 "company": company,
                 "location": location,
-                # "reward": reward,
                 "URL": URL
             }
             self.all_jobs.append(job_data)

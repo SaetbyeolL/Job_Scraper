@@ -39,8 +39,3 @@ class Remoteok_JobScraper:
             self.all_jobs.append(job_data)
         
         return self.all_jobs
-
-
-# remoteok = Remoteok_JobScraper()
-# remoteok.rw_scrape_jobs("python")
-# print(remoteok.all_jobs)
