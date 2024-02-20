@@ -4,31 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css" />
+    <style>
+        h1 {
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+    </style>
     <title>Job Scraper</title>
 </head>
+
 <body>
     <main class="container">
-        <h1>Search Results for "{{ keyword }}" :</h1>
-        <table role="grid">
-            <thead>
-                <tr>
-                    <th>Job Title</th>
-                    <th>Company</th>
-                    <th>Location</th>
-                    <th>Link</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for job in jobs %}                            
-                <tr>
-                    <td>{{job.title}}</td>
-                    <td>{{job.company}}</td>
-                    <td>{{job.location}}</td>
-                    <td><a href="{{job.URL}}" target="_blank">Apply now &rarr;</a></td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>     
+        <hgroup>
+            <h1>Search Results for "{{ keyword }}" :</h1>
+            <a href="/">Back to Search</a>
+            <a href="/export?keyword={{keyword}}" target="_blank">Export to file</a>
+        </hgroup>
+        <figure>
+            <table role="grid">
+                <thead>
+                    <tr>
+                        <th>Job Title</th>
+                        <th>Company</th>
+                        <th>Location</th>
+                        <th>Link</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for job in jobs %}                            
+                    <tr>
+                        <td>{{job.title}}</td>
+                        <td>{{job.company}}</td>
+                        <td>{{job.location}}</td>
+                        <td><a href="{{job.URL}}" target="_blank">Apply now &rarr;</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table> 
+        </figure>
+    
 
     </main>
 
