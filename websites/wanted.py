@@ -14,12 +14,9 @@ class Wanted_JobScraper:
     
     def Wanted_scrape_jobs(self, keyword):
         self.page.goto(f"https://www.wanted.co.kr/search?query={keyword}&tab=position")
-     
-        for _ in range(5):                                  
-            self.page.keyboard.down("End")
-            time.sleep(0.1)
-            
+        self.page.keyboard.down("End")
         self.content = self.page.content()
+        self.browser.close()
         self.Wanted_scrape_page()        
 
         

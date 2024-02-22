@@ -1,23 +1,21 @@
 from flask import Flask, render_template, request, redirect, send_file
 from websites.remoteok import Remoteok_JobScraper
 from websites.wanted import Wanted_JobScraper
-from file import save_to_file
+from save_file import save_to_file
 
 
 app = Flask("JobScraper")
-database = {} # database will be deleted when server is off. for speed up
+database = {}
 
 
-@app.route("/") # decorator: when user visit this page, flask will call function which is located right below 
+@app.route("/")
 def home():
-    return render_template("home.html", name="nico")
-# render_template: flask look inside 'templates'folder and get 'home.html'
+    return render_template("home.html")
 
 
 @app.route("/search")
 def search():
     keyword = request.args.get("keyword")     
-    
     if keyword == None or keyword == "":      
         return redirect("/")
     if keyword in database:
@@ -29,7 +27,6 @@ def search():
         wanted.Wanted_scrape_jobs(keyword)
         jobs =  remoteok.all_jobs + wanted.all_jobs
         database[keyword] = jobs
-        
     return render_template("search.html", keyword=keyword, jobs=jobs)
 
 
