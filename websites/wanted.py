@@ -27,13 +27,12 @@ class Wanted_JobScraper:
         for job in jobs:
             title = job.find("strong", "JobCard_title__ddkwM").text
             company = job.find("span", class_="JobCard_companyName__vZMqJ").text
-            location = job.find("span", class_="JobCard_location__2EOr5").text
             URL = f"https://www.wanted.co.kr{job.find('a')['href']}"
             
             job_data = {
                 "title": title,
                 "company": company,
-                "location": location,
+                "location": "South Korea",
                 "URL": URL
             }
             self.all_jobs.append(job_data)
