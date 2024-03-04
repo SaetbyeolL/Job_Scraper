@@ -16,7 +16,7 @@ ________________________________________________________________________________
 <div>Implementing a web scraper for the Weworkremotely website, which scrapes 'remote full-time' job listings from each page and prints them all</div>
 <br>
 <div align="center">
-  <img src="https://github.com/SaetbyeolL/Job_Scraper/assets/105615793/21bc92db-1b76-49f7-bc93-7dac72f626a5" alt="Scrapping_static_website">
+  <img src="https://github.com/SaetbyeolL/Job_Scraper/assets/105615793/25515a57-9d75-4c9b-aa41-8181619487af" alt="Scrapping_static_website">
 </div>
 <br>
 
@@ -24,7 +24,7 @@ ________________________________________________________________________________
 <div>Scraping a 'wanted' website job postings based on the keywords entered by the user, extracting relevant details, and saving them to a CSV file named after the keyword</div>
 <br>
 <div align="center">
-  <img src="https://github.com/SaetbyeolL/Job_Scraper/assets/105615793/7131991b-d807-4671-a9b7-7592ba715717" alt="Scrapping_dynamic_website">
+  <img src="https://github.com/SaetbyeolL/Job_Scraper/assets/105615793/2036e390-c566-44c8-95c2-00cf350bf750" alt="Scrapping_dynamic_website">
 </div>
 <br>
 
